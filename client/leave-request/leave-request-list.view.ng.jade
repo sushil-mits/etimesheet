@@ -1,0 +1,86 @@
+.leaveRequest-list(layout='row')
+  div
+    .sidebar(layout='column',  flex='stretch')
+      h4 User Management
+      hr      
+      a(href='/employees') Manage Employees
+      a(href='/organisations') Manage Organisation
+      hr
+      h4 List Datamanagement
+      hr
+      a(href='/department') Manage Department
+      a(href='/designation') Manage Designation
+      a(href='/leave-request') View Leave Request
+      a(href='/daily-logs') View Daily Logs
+      a(href='/project') Add Projects
+  span(flex='')
+  div(layout='column')
+    h1 LeaveRequest
+    
+    //- form.md-whiteframe-z1(ng-submit='save()', name='form', novalidate='', layout-padding='')
+      //- p Add a leaveRequest
+      //- md-input-container
+      //-   label Name
+      //-   input(ng-model='newLeaveRequest.name', placeholder='Name')
+      //- input.md-button(type='submit', value='Add')
+    div(layout='row', layout-padding='')
+      md-input-container(flex='65')
+        label Search
+        input(type='search', ng-model='search', placeholder='Search')
+      md-select(ng-model='orderProperty', flex='35')
+        md-option(value='1') Ascending
+        md-option(value='-1') Descending
+
+    
+    table(padding='1px',border='1px',float='left',style="")
+      thead
+        tr
+         th S.no
+         th(ng-click="sortType = 'askDate'; sortReverse = !sortReverse")
+          a(href='#') Requested Date
+            i(class='fa fa-sort',style="float:right")
+          span(ng-show="sortType == 'askDate' && !sortReverse")
+          span(ng-show="sortType == 'askDate' && sortReverse")
+         th(ng-click="sortType = 'user'; sortReverse = !sortReverse")
+          a(href='#') Requested By
+            i(class='fa fa-sort',style="float:right")
+          span(ng-show="sortType == 'user' && !sortReverse")
+          span(ng-show="sortType == 'user' && sortReverse")
+          th(ng-click="sortType = 'user'; sortReverse = !sortReverse")
+          a(href='#') Leave Name
+            i(class='fa fa-sort',style="float:right")
+          span(ng-show="sortType == 'user' && !sortReverse")
+          span(ng-show="sortType == 'user' && sortReverse")
+         th( ng-click="sortType = 'reason'; sortReverse = !sortReverse") 
+          a(href='#') Reason
+            i(class='fa fa-sort',style="float:right")
+          span(ng-show="sortType == 'reason' && !sortReverse")
+          span(ng-show="sortType == 'reason' && sortReverse")
+         th(ng-click="sortType = 'startDate'; sortReverse = !sortReverse") 
+          a(href='#') Start Date
+            i(class='fa fa-sort',style="float:right")
+          span(ng-show="sortType == 'startDate' && !sortReverse")
+          span(ng-show="sortType == 'startDate' && sortReverse")
+         th(ng-click="sortType = 'endDate'; sortReverse = !sortReverse")
+          a(href='#')  End Date
+            i(class='fa fa-sort',style="float:right")
+          span(ng-show="sortType == 'endDate' && !sortReverse")
+          span(ng-show="sortType == 'endDate' && sortReverse")
+         th Option
+
+      tr(dir-paginate='leaveRequest in leave | itemsPerPage: perPage', total-items='leaveRequestCount.count',  current-page='page')
+        td {{$index+1}} 
+        td {{leaveRequest.askDate| date:'fullDate' }} 
+        td {{leaveRequest.user}} 
+        td {{leaveRequest.name }}
+        td {{leaveRequest.reason }}
+        td {{leaveRequest.startDate| date:'fullDate' }}
+        td {{leaveRequest.endDate| date:'fullDate' }} 
+        
+        td 
+          button(ng-click='verifyleave(leaveRequest._id)') Verify It
+        td 
+          button(ng-click='cancelleave(leaveRequest._id)') Cancel it  
+          
+    dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
+  span(flex='')

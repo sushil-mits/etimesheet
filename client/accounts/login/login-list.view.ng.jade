@@ -1,0 +1,41 @@
+.login-list(layout='row')
+  md-content(layout='row')
+  span(flex='')
+  div(layout='column',layout-wrap)
+    div(layout='row' ,layout-wrap)
+      div(layout="row", layout-align='space-around center',flex='80')
+        md-whiteframe(layout='column',name='login' flex='90')
+          div(layout="row", layout-align='center center')
+            h3 E-Timesheet Management System
+          .md-warn(ng-show='error')
+            small {{ error }}
+          form(layout='column')
+            div       
+              md-input-container
+                label Email
+                input(type='text', ng-model='credentials.email',aria-label='email', ng-focus)
+            div
+              md-input-container
+                label Password
+                input(type='password', ng-model='credentials.password',aria-label='password')
+          div(layout='row', layout-align='space-around center')
+            md-button.md-raised.md-primary(ng-click='login()') login
+      div(layout='row', layout-align='space-around center',style="border-left:1px solid",flex='20')
+        md-whiteframe(layout='column',name='register',flex='10')
+            a(ng-href='/signup')
+              i(class='fa fa-user-plus fa-5x')
+            p Create new Account
+    div.toolpassword(layout='row', layout-align='space-around center')
+    span(flex='')
+      a(href='/reset') Forgot your password?
+    span(flex='')
+    div(layout='row',flex='',layout-wrap)
+      div.social-buttons(layout='row' layout-align='space-between center')
+        h4 Login with:
+        md-button.social-icon.social-fb(aria-label="facebook")
+          i.fa.fa-facebook-official.fa-3x
+        md-button.social-icon.social-tw(aria-label="twitter")
+          i.fa.fa-twitter.fa-3x
+        md-button.social-icon.social-gp(aria-label="googleplus")
+          i.fa.fa-google-plus-square.fa-3x
+  span(flex='')

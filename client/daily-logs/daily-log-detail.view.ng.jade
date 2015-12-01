@@ -1,0 +1,31 @@
+.dailyLog-detail(layout='row')
+  div
+    .sidebar(layout='column',  flex='stretch')
+      h4 User DashBoard
+      hr      
+      a(href='/add-dailyLogs') Add Daily Logs
+      a(href='/addleave') Add Leave Request
+      hr
+  span(flex='')
+  div(layout='column')
+    h1 Here are the details of the dailyLog
+    form.md-whiteframe-z1(name='form', ng-submit='save()', layout-padding='')
+      md-input-container
+        label Name
+        input(ng-model='dailyLog.name', placeholder='Name')
+      div(layout='row')
+        input.md-button(type='submit', value='Save')
+        md-button(ng-click='reset()') Reset
+        md-button(ng-href='/dailyLogs') Cancel
+
+      
+
+        //- tr(dir-paginate='dailyLog in dailyLogs | itemsPerPage: perPage', total-items='dailyLogsCount.count',  current-page='page')
+        //-   td {{ $index+1 }}
+        //-   td {{ dailyLog.createdDate | date:'fullDate' }} 
+        //-   td {{ dailyLog.user }} 
+        //-   td {{ dailyLog.pname}}
+        //-   td {{ dailyLog.description }}
+        //-   td {{ dailyLog.Timetaken }} hrs
+      //- dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
+  span(flex='')

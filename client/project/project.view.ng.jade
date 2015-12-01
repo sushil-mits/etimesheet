@@ -1,0 +1,46 @@
+.project(layout="row")
+  div
+    .sidebar(layout='column',  flex='stretch')
+      h4 User Management
+      hr      
+      a(href='/employees') Manage Employees
+      a(href='/organisations') Manage Organisation
+      hr
+      h4 List Datamanagement
+      hr
+      a(href='/department') Manage Department
+      a(href='/designation') Manage Designation
+      a(href='/leave-request') View Leave Request
+      a(href='/daily-logs') View Daily Logs
+      a(href='/project') Add Projects
+  span(flex='')
+  div(layout='column')
+    div.md-whiteframe-z1a(layout-padding='')
+      h1 Project
+      form.md-whiteframe-z1(ng-submit='save()', name='form', novalidate='', layout-padding='')
+        p Add a project
+        md-input-container
+          label Name
+          input(ng-model='newProject.name', placeholder='Name')
+        md-input-container
+          label Discription
+          input(ng-model='newProject.discription', placeholder='Discription')
+        div(layout='row', layout-align='space-around center') 
+          label Start Date
+          md-datepicker(ng-model='newProject.startDate', md-placeholder='From')
+          label End Date
+          md-datepicker(ng-model='newProject.endDate', md-placeholder='To')
+        div.md-whiteframe-z1a(layout-padding='')
+          ul Members
+            li(ng-repeat='user in users', style="list-style-type: none;")
+              input(type='checkbox', checklist-model='member', checklist-value='user.emails[0].address', ng-disabled="shouldBeDisabled(user.deleted)", ng-click="toggle(user._id, member)", ng-checked="exist(user._id, member)" )
+              {{user.profile.fName}} || {{user.emails[0].address}}
+          label parent
+          md-select(ng-model='newProject.parent', placeholder='Select Parent Project if any') 
+           md-option(ng-value='' )
+           md-option(ng-value='project._id', ng-repeat='project in project') {{ project.name }}
+        div(layout='row')
+          input.md-button(type='submit', value='Add' ng-href='/project')
+          md-button(ng-href='/project') Cancel 
+  span(flex='')
+  

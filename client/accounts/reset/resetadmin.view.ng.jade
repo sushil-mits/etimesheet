@@ -1,0 +1,34 @@
+md-content(layout='')
+  toolbar(style='position:fixed')
+md-content(layout='row')
+  div
+    .sidebar(layout='column',  flex='stretch')
+      h4 User Management
+      hr      
+      a(href='/employees') Manage Employees
+      a(href='/organisations') Manage Organisation
+      hr
+      h4 List Datamanagement
+      hr
+      a(href='/department') Manage Department
+      a(href='/designation') Manage Designation
+      a(href='/leave-request') View Leave Request
+      a(href='/daily-logs') View Daily Logs
+      a(href='/project') Add Projects
+  span(flex='')
+  md-whiteframe(layout='column', flex='50')
+    div.middle(layout='row', layout-align='space-around center')
+      div Login with:
+      md-button Twitter
+      md-button Facebook
+    .md-warn(ng-show='rpc.error')
+      small {{ rpc.error }}
+    form(layout='column')
+      md-input-container
+        md-icon(md-svg-icon='content:ic_mail_24px')
+        input(type='password', ng-model='newPlaintextPassword', placeholder='password', aria-label='password')
+      md-button.md-raised.md-primary(ng-click='aresetpsw()', aria-label='login')
+        | Reset password
+    div(layout='row', layout-align='end center')
+      a(href='/login') Login
+  span(flex='')

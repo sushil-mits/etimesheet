@@ -1,0 +1,60 @@
+.employees-list(layout='row')
+  
+  div
+  .sidebar(layout='column',  flex='stretch')
+    h4 User Management
+    hr      
+    a(href='/employees') Manage Employees
+    a(href='/organisations') Manage Organisation
+    hr
+    h4 List Datamanagement
+    hr
+    a(href='/department') Manage Department
+    a(href='/designation') Manage Designation
+    a(href='/leave-request') View Leave Request
+    a(href='/daily-logs') View Daily Logs
+    a(href='/project') Add Projects
+  span(flex='')
+  div.md-whiteframe-z1
+    h1 Employees
+    
+    div(layout='row', layout-padding='')
+      md-input-container(flex='65')
+        label Search
+        input(type='search', ng-model='search', placeholder='Search')
+      md-select(ng-model='orderProperty', flex='35')
+        md-option(value='1') Ascending
+        md-option(value='-1') Descending
+
+    table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+        tr
+          th S.N
+          th
+            a(href='#', ng-click="sortType = 'name'; sortReverse = !sortReverse") Name
+          th
+            a(href='#', ng-click="sortType = 'contact'; sortReverse = !sortReverse") Contact
+          th Primary Email Address
+          th Designation           
+          th Department           
+        tr(dir-paginate='user in users | itemsPerPage: perPage', total-items='usersCount.count',  current-page='page')
+          td {{$index + 1}}
+          td
+            | {{user.profile.fName + ' ' + user.profile.mName + ' ' + user.profile.lName}}
+          td {{user.profile.contact.mNumber}}
+          td {{user.emails[0].address}}
+          td {{user.profile.designation}}
+          td {{user.profile.department}}
+          td
+            a(href='/employees/{{user._id}}')
+              i.fa.fa-pencil.fa-2x
+            a(href='/reset/{{user._id}})' )
+              i.fa.fa-undo.fa-2x
+            a(ng-href='' ng-click=('delete(user._id)'))
+              i.fa.fa-trash.fa-2x
+            a(ng-href="" ng-click=('deactivate(user._id)'))
+              i.fa.fa-lock.fa-2x
+
+    dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
+
+    p Total number of employees: {{usersCount.count}}
+  span(flex='')

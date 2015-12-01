@@ -1,0 +1,32 @@
+.department(layout='row')
+   div
+    .sidebar(layout='column',  flex='stretch')
+      h4 User Management
+      hr      
+      a(href='/employees') Manage Employees
+      a(href='/organisations') Manage Organisation
+      hr
+      h4 List Datamanagement
+      hr
+      a(href='/department') Manage Department
+      a(href='/designation') Manage Designation
+      a(href='/leave-request') View Leave Request
+      a(href='/daily-logs') View Daily Logs
+      a(href='/project') Add Projects
+  span(flex='')
+  div(layout='column')
+      div.md-whiteframe-z1a(layout-padding='')
+        h1 Department
+        form.md-whiteframe-z1(ng-submit='save()', name='form', novalidate='', layout-padding='')
+          p Add a department
+          md-input-container
+            label Name
+            input(ng-model='newDepartment.name', placeholder='Name')
+          md-input-container
+            label Address
+            textarea(ng-model='newDepartment.discription', placeholder='Address')
+          
+          div(layout='row')
+            input.md-button(type='submit', value='Add')
+            md-button(ng-href='/department') Cancel
+  span(flex='')

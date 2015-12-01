@@ -1,0 +1,62 @@
+.project-list(layout='row')
+  div
+    .sidebar(layout='column',  flex='stretch')
+      h4 User Management
+      hr      
+      a(href='/employees') Manage Employees
+      a(href='/organisations') Manage Organisation
+      hr
+      h4 List Datamanagement
+      hr
+      a(href='/department') Manage Department
+      a(href='/designation') Manage Designation
+      a(href='/leave-request') View Leave Request
+      a(href='/daily-logs') View Daily Logs
+      a(href='/project') Add Projects
+  span(flex='')
+  div(layout='column')
+    h1 Project
+    
+    div(layout='row', layout-padding='')
+      md-input-container(flex='65')
+        label Search
+        input(type='search', ng-model='search', placeholder='Search')
+      md-select(ng-model='orderProperty', flex='35')
+        md-option(value='1') Ascending
+        md-option(value='-1') Descending
+
+    div(layout='row', layout-padding='')
+      md-button(ng-href='/addproject')
+        i.fa.fa-plus.fa-2x Add 
+
+    table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+      tr
+        th S.N
+        th
+          a(href='#', ng-click="sortType = 'name'; sortReverse = !sortReverse") Name
+        th
+          a(href='#', ng-click="sortType = 'contact'; sortReverse = !sortReverse") Discription
+        th Start Date
+        th End Date
+          
+
+      tr(dir-paginate='project in project | itemsPerPage: perPage', total-items='projectCount.count',  current-page='page')
+        td {{$index + 1}}
+        td {{ project.name }}
+        td {{ project.discription }}
+        td {{ project.startDate | date:'yyyy-MM-dd' }}
+        td {{ project.endDate | date:'yyyy-MM-dd' }}
+
+        td
+          a(href='/project/{{project._id}}')
+            i.fa.fa-pencil.fa-2x
+          a(href='' )
+            i.fa.fa-undo.fa-2x
+          a(ng-href='' ng-click=('remove(project._id)'))
+            i.fa.fa-trash.fa-2x
+          a(ng-href="" ng-click=('deactivate(project._id)'))
+            i.fa.fa-lock.fa-2x
+    dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
+
+    p Total number of project: {{projectCount.count}}
+  span(flex='')

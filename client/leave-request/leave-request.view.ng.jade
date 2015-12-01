@@ -1,0 +1,29 @@
+.leaveRequests(layout='row')
+  div
+   .sidebar(layout='column',  flex='stretch')
+     h4 User DashBoard
+     hr      
+     a(href='/add-dailyLogs') Add Daily Logs
+     a(href='/addleave') Add Leave Request
+     hr
+  span(flex='')
+  div(layout='column')
+    p
+      md-button.md-raised.md-primary(ng-click='list(employee[0].name)', style='border-radius: 15px;',ng-show='turnon') view previous Leave Request
+    form.md-whiteframe-z1(ng-submit='save()', name='form', novalidate='', layout-padding='')
+      p Add a leaveRequest
+      md-input-container
+        label Name
+        input(ng-model='newLeaveRequest.name', placeholder='Name')
+      div(layout='row', layout-align='space-around left') 
+        label Leave
+        md-datepicker(ng-model='startDate', md-placeholder='From', date-format="yyyy-MM-dd")
+        md-datepicker(ng-model='endDate', md-placeholder='To', date-format="yyyy-MM-dd")
+      md-input-container
+        Label Leave Reason
+        input(ng-model='newLeaveRequest.reason', placeholder='Mention Reason Here' type="textarea")
+      div(layout='row')
+        input.md-button(type='submit', value='Add')
+        md-button(ng-href='/leaveRequest') Cancel 
+      
+  span(flex='')

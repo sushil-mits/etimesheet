@@ -13,5 +13,5 @@ angular.module 'etimesheetApp'
      Meteor.call('resetpsw', $stateParams.userId,$scope.newPlaintextPassword)
      console.log("successfromcontroller")
 
-  $scope.resetpsw = () ->
-    Meteor.call('resetPassword',$stateParams.resetToken,$scope.password)
+  # $scope.resetpsw = () ->
+  #   Meteor.call('resetPassword',$stateParams.resetToken,$scope.password)

@@ -48,14 +48,10 @@ Meteor.methods
     LeaveRequest.update(leaveRequestid,{$set:{'deleted':1}})
     console.log("comes to the method")  
   
-  Accounts.emailTemplates.resetPassword.text = (user, url) ->
-    url = url.replace('#/','')
-  Accounts.emailTemplates.verifyEmail.text = (user, url) ->
-    url = url.replace('#/','')   
+  # Accounts.emailTemplates.resetPassword.text = (user, url) ->
+  #   url = url.replace('#/','')
+  # Accounts.emailTemplates.verifyEmail.text = (user, url) ->
+  #   url = url.replace('#/','')   
   
 
-  Accounts.onCreateUser (options, user) ->
-    if options.stopActivationLink
-      user.emails[0].verified=true   
-    user.profile=options.profile
-    return user
+  

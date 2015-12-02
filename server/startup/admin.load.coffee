@@ -10,3 +10,5 @@ Meteor.startup ->
     ]
     admin.forEach (admin) ->
       Admin.insert admin
+
+  

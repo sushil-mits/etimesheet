@@ -2,11 +2,11 @@ md-toolbar.toolbar(layout='row', layout-align='start center', layout-padding='')
   .navbar-left(layout='row', layout-align='center center')
     div( ng-if='currentUser.emails[0].address',style="margin-left:25px;")
       div(ng-if='user(currentUser.emails[0].address)')
-        a(href='/udashboard',style="color:white;text-decoration:none;")
+        a(href='/add-dailyLogs',style="color:white;text-decoration:none;")
           h3 E-Timesheet 
           md-tooltip(md-direction='right') Home
       div(ng-if='!user(currentUser.emails[0].address)')
-        a(href='/adashboard',style="color:white;text-decoration:none;")
+        a(href='/employees',style="color:white;text-decoration:none;")
           h3 E-Timesheet 
           md-tooltip(md-direction='right') Home    
 
